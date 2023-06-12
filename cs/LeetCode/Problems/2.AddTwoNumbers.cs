@@ -20,7 +20,7 @@ public class Solution
         while (true)
         {
             sum = l1Node.val + l2Node.val + buf;
-            if (sum > 9)
+            if (sum >= 10)
             {
                 buf = sum / 10;
                 l1Node.val = sum % 10;
@@ -31,18 +31,15 @@ public class Solution
                 l1Node.val = sum;
             }
 
-            if (l1Node.next is null && l2Node.next is null && l1Node.val == 0 && l2Node.val == 0)
+            if (l1Node.next is null && l2Node.next is null && buf == 0)
             {
-                if (buf > 0)
-                {
-                    l1Node.next = new(buf);
-                }
-
                 break;
             }
 
-            l1Node = l1Node.next ?? new(0);
-            l2Node = l2Node.next ?? new(0);
+            l1Node.next ??= new(0);
+            l2Node.next ??= new(0);
+            l1Node = l1Node.next;
+            l2Node = l2Node.next;
         }
 
         return l1;
