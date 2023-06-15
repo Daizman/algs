@@ -2,8 +2,8 @@ namespace LeetCode.Problems.AddTwoNumbers;
 
 public class ListNode {
     public int val;
-    public ListNode next;
-    public ListNode(int val=0, ListNode next=null) {
+    public ListNode? next;
+    public ListNode(int val=0, ListNode? next=null) {
         this.val = val;
         this.next = next;
     }
@@ -45,7 +45,7 @@ public class Solution
         return l1;
     }
 
-    public ListNode BestAddTwoNumbers(ListNode l1, ListNode l2)
+    public ListNode? BestAddTwoNumbers(ListNode? l1, ListNode? l2)
     {
         ListNode dummy = new(-1);
         ListNode temp = dummy;
