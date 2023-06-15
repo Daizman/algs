@@ -35,4 +35,30 @@ public class Solution
 
         return maxLength;
     }
+
+    public int LengthOfLongestSubstringBest(string s)
+    {
+        if (string.IsNullOrEmpty(s))
+        {
+            return 0;
+        }
+
+        Dictionary<char, int> map = new();
+        int startPos = 0;
+        int endPos = 0;
+        int maxLength = 0;
+        while(endPos < s.Length)
+        {
+            if (map.ContainsKey(s[endPos]))
+            {
+                startPos = Math.Max(startPos, map[s[endPos]] + 1);
+            }
+
+            map[s[endPos]] = endPos;
+            endPos++;
+            maxLength = Math.Max(maxLength, endPos - startPos);
+        }
+
+        return maxLength;
+    }
 }
