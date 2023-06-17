@@ -1,4 +1,5 @@
-def convertRomanToArabic(roman):
+def convertRomanToArabic(roman: str) -> int:
+    roman = roman.upper()
     roman_dict = {
         "I": 1,
         "V": 5,
