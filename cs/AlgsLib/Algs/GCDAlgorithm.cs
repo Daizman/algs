@@ -3,7 +3,7 @@ namespace AlgsLib.Algs;
 
 public static class GCDAlgorithm
 {
-    public static int GCD(int a, int b)
+    public static int Run(int a, int b)
     {
         while(b != 0)
         {
