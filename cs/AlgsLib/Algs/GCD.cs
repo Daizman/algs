@@ -1,7 +1,7 @@
 
 namespace AlgsLib.Algs;
 
-public static class GCDAlgorithm
+public static class GCD
 {
     public static int Run(int a, int b)
     {
