@@ -7,4 +7,4 @@ Console.WriteLine(FibNumbers.Run(4));
 Console.WriteLine(FibNumbers.Run(7));
 Console.WriteLine(FibNumbers.Run(41));
 
-HuffmanCodes.Run("abacaba");
+HuffmanCodes.RunCodeString("abacaba");

@@ -4,7 +4,7 @@ namespace AlgsLib.Algs;
 
 public class HuffmanCodes
 {
-    public static void Run(string stringToCode)
+    public static void RunCodeString(string stringToCode)
     {
         HuffmanTree tree = new(stringToCode);
         Console.WriteLine($"{tree.CodesDictionary.Count} {tree.CodedString.Length}");
@@ -13,6 +13,47 @@ public class HuffmanCodes
             Console.WriteLine($"{coded.Key}: {coded.Value}");
         }
         Console.WriteLine(tree.CodedString);
+    }
+
+    public static void RunDecodeString()
+    {
+        var input = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return ;
+        }
+
+        var inputToInt = input.Split().Select(el => int.Parse(el)).ToList();
+        var charactersCount = inputToInt[0];
+        var codedStringLength = inputToInt[1];
+
+        Dictionary<string, char> codesDictionary = new();
+
+        for(int i = 0; i < charactersCount; i ++)
+        {
+            var codeLine = Console.ReadLine().Split().Select(el => el.Trim()).ToList();
+            codesDictionary[codeLine[1]] = codeLine[0][0];
+        }
+
+        var codedString = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(codedString))
+        {
+            return;
+        }
+
+        var currentCode = "";
+        var initialString = "";
+        for (int i = 0; i < codedStringLength; i++)
+        {
+            currentCode += codedString[i];
+            if (codesDictionary.ContainsKey(currentCode))
+            {
+                initialString += codesDictionary[currentCode];
+                currentCode = "";
+            }
+        }
+
+        Console.WriteLine(initialString);
     }
 
     public class HuffmanTree
@@ -92,6 +133,8 @@ public class HuffmanCodes
 
             return answer.ToString();
         }
+
+        
 
         public class HuffmanNode
         {
