@@ -14,6 +14,8 @@ public static class FibNumbers
             current = newCurrent;
         }
 
-        return current;
+        return n == 0
+            ? previous
+            : current;
     }
 }
