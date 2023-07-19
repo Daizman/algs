@@ -1,9 +1,3 @@
-def main():
-    ranges = inputRanges()
-    dots = wrapRangesWithDots(ranges)
-    print(len(dots))
-    print(*dots)   
-
 def inputRanges():
     n = int(input())
     ranges = []
@@ -15,17 +9,22 @@ def inputRanges():
 def wrapRangesWithDots(ranges):
     dots = set()
     # alg
-    sortedByEnd = sorted(ranges, key=lambda r: r[1], reverse=True)
-    current = sortedByEnd.pop()
-    while len(sortedByEnd) != 0:
-        newCurrent = sortedByEnd.pop()
-        if current[1] >= newCurrent[0]:
-            continue
-        dots.add(current[1])
-        current = newCurrent
-    dots.add(current[1])
+    sortedByEnd = sorted(ranges, key=lambda r: r[1])
+    lastAdded = sortedByEnd[0]
+    dots.add(lastAdded[1])
+    for i in range(1, len(sortedByEnd)):
+        cur = sortedByEnd[i]
+        if cur[0] > lastAdded[1] or cur[1] < lastAdded[0]:
+            dots.add(cur[1])
+            lastAdded = cur
 
     return dots
+
+def main():
+    ranges = inputRanges()
+    dots = wrapRangesWithDots(ranges)
+    print(len(dots))
+    print(*dots)   
 
 
 if __name__ == "__main__":
