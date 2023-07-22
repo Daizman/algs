@@ -2,20 +2,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            // Use IntelliSense to find out which attributes exist for C# debugging
-            // Use hover for the description of the existing attributes
-            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
+            "name": "LeetCode Launch",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            // If you have changed target frameworks, make sure to update the program path.
-            //"program": "${workspaceFolder}/cs/LeetCode/bin/Debug/net6.0/LeetCode.dll",
+            "preLaunchTask": "buildLeetCode",
+            "program": "${workspaceFolder}/cs/LeetCode/bin/Debug/net6.0/LeetCode.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/cs/LeetCode",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Algs Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildAlgsLib",
             "program": "${workspaceFolder}/cs/AlgsLib/bin/Debug/net6.0/AlgsLib.dll",
             "args": [],
-            //"cwd": "${workspaceFolder}/cs/LeetCode",
             "cwd": "${workspaceFolder}/cs/AlgsLib",
-            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
         },
