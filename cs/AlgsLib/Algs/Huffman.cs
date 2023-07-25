@@ -4,7 +4,7 @@ namespace AlgsLib.Algs;
 
 public static class HuffmanCoder
 {
-    public static string Encode(string stringToEncode)
+    public static EncodeInfo Encode(string stringToEncode)
     {
         EncodeInputValidation(stringToEncode);
 
@@ -13,7 +13,11 @@ public static class HuffmanCoder
         var codesDictionary = GetCodesDictionary(huffmanCodesTree);
         var encodedString = Encode(stringToEncode, codesDictionary);
 
-        return encodedString;
+        return new EncodeInfo
+        {
+            CodesDictionary = codesDictionary,
+            EncodedString = encodedString
+        };
     }
 
     private static void EncodeInputValidation(string stringToEncode)
@@ -153,4 +157,10 @@ class HuffmanNode
     public int Frequency { get; set; }
     public HuffmanNode? Left { get; set; }
     public HuffmanNode? Right { get; set; }
+}
+
+public class EncodeInfo
+{
+    public string EncodedString { get; set; }
+    public Dictionary<char, string> CodesDictionary { get; set; }
 }
