@@ -15,32 +15,15 @@ public class TreeNode
 
 public class Solution 
 {
-    public TreeNode? InvertTree(TreeNode? root) 
+    public TreeNode InvertTree(TreeNode root) 
     {
-        return Invert(root);
-    }
-
-    private TreeNode? Invert(TreeNode? root)
-    {
-        if (root?.left is null && root?.right is null)
+        if(root != null)
         {
-            return root;
+            var temp = root.left;
+            root.left = InvertTree(root.right);
+            root.right = InvertTree(temp);
         }
-
-        if (root.left is not null)
-        {
-            Invert(root.left);
-        }
-
-        if (root.right is not null)
-        {
-            Invert(root.right);
-        }
-
-        var temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-
+        
         return root;
     }
 }
