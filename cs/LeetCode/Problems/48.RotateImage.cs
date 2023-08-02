@@ -8,40 +8,43 @@ public class Solution
         {
             return;
         }
-        Print(matrix, "before mirror");
+        // Mirror matrix by vertical middle line
         Mirror(matrix);
-        Print(matrix, "after mirror");
-        // lower triangle
-        int i = matrix.Length - 1, j = 0;
-        int iPair = 0, jPair = matrix.Length - 1;
-        while(i >= 0 && j < matrix.Length)
-        {
-            (matrix[jPair][j], matrix[i][iPair]) 
-            = (matrix[i][iPair], matrix[jPair][j]);
-            Print(matrix);
-            i--;
-            j++;
-        }
-        i++;
-        j--;
 
-        // upper triangle
-        while (iPair < matrix.Length && jPair >= 0)
+        // Mirror matrix by left bottom corner to right top corner line
+        int col1 = 0, row1 = matrix.Length - 1;
+        int col2 = 0, row2 = matrix.Length - 1;
+        while (col1 != matrix.Length - 1 || col2 != matrix.Length - 1
+            || row1 != 0 || row2 != 0)
         {
-            (matrix[jPair][j], matrix[i][iPair]) 
-            = (matrix[i][iPair], matrix[jPair][j]);
-            Print(matrix);
+            int pointer1Col = col1, pointer1Row = row1;
+            int pointer2Col = col2, pointer2Row = row2;
 
-            iPair++;
-            jPair--;
-        }
-
-        // diag
-        for (; i < matrix.Length / 2; i++, j--)
-        {
-            (matrix[i][i], matrix[j][j]) 
-            = (matrix[j][j], matrix[i][i]);
-            Print(matrix);
+            while(pointer1Col < pointer2Col && pointer2Row > pointer1Row)
+            {
+                (matrix[pointer1Row][pointer1Col], matrix[pointer2Row][pointer2Col]) = 
+                (matrix[pointer2Row][pointer2Col], matrix[pointer1Row][pointer1Col]);
+                pointer1Col++;
+                pointer1Row++;
+                pointer2Col--;
+                pointer2Row--;
+            }
+            if (row1 > 0)
+            {
+                row1--;
+            }
+            else
+            {
+                col1++;
+            }
+            if (col2 < matrix.Length - 1)
+            {
+                col2++;
+            }
+            else
+            {
+                row2--;
+            }
         }
     }
 
@@ -54,19 +57,6 @@ public class Solution
                 (matrix[i][matrix.Length - 1 - j], matrix[i][j]) 
                 = (matrix[i][j], matrix[i][matrix.Length - 1 - j]);
             }
-        }
-    }
-
-    private void Print(int[][] matrix, string msg = "")
-    {
-        Console.WriteLine(msg);
-        foreach(var row in matrix)
-        {
-            foreach(var el in row)
-            {
-                Console.Write($"{el:00}, ");
-            }
-            Console.WriteLine();
         }
     }
 }
